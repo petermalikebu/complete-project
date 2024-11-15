@@ -1,0 +1,135 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}
+    Received Files - SecureFile
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 animate-fade-in">Files Shared with You</h1>
+    <ul class="list-group">
+        {% for file in shared_files %}
+        <li class="list-group-item mb-3 p-4 shadow-sm rounded animate-fade-in-up" style="background: rgba(255, 255, 255, 0.9);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong class="text-primary">{{ file.filename }}</strong>
+                    <br>
+                    <small class="text-muted">Shared by: {{ file.sender }}</small>
+                    <br>
+                    <small class="text-muted">Received on: {{ file.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+                </div>
+                <form action="{{ url_for('download_shared_file', file_id=file._id) }}" method="POST" class="form-inline">
+                    <div class="form-group mx-sm-3">
+                        <label for="encryption_key_{{ file._id }}" class="sr-only">Enter Encryption Key:</label>
+                        <input type="password" class="form-control animated-input" id="encryption_key_{{ file._id }}" name="encryption_key" placeholder="Encryption Key" required aria-label="Encryption Key">
+                    </div>
+                    <button type="submit" class="btn btn-success">Download</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-warning mt-3 animate-fade-in-up">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block custom_styles %}
+<style>
+    /* Background and general body styles */
+    body {
+        background: linear-gradient(135deg, #6b6b6b, #4e4e4e);
+        color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        background-image: url('{{ url_for("static", filename="images/image.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        
+    }
+
+    /* Container and title styles */
+    .container {
+        max-width: 800px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+        color: #333;
+        font-weight: bold;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    /* List item (card-like) styles */
+    .list-group-item {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .list-group-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animation effects */
+    .animate-fade-in {
+        animation: fadeIn 1.5s ease;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form input and button styles */
+    .animated-input {
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .animated-input:focus {
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        transform: scale(1.02);
+    }
+
+    .btn-success {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    .alert {
+        font-weight: bold;
+        animation: fadeInUp 1s ease;
+        color: #856404;
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+    }
+</style>
+{% endblock %}

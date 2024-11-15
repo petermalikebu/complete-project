@@ -1,0 +1,156 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}
+    Share a File - SecureFile
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 p-5 rounded shadow-lg" style="max-width: 600px; background: rgba(255, 255, 255, 0.85);">
+    <h2 class="text-center text-primary mb-4 animate-fade-in">Share a Secure File</h2>
+    <p class="text-center text-muted animate-slide-in">Easily share encrypted files with trusted recipients.</p>
+    
+    <form action="{{ url_for('share_file') }}" method="POST" enctype="multipart/form-data" class="animate-fade-in-up">
+        <div class="form-group mb-4">
+            <label for="recipient_email" class="text-dark font-weight-bold">Recipient Email</label>
+            <input type="email" class="form-control animated-input" id="recipient_email" name="recipient_email" required placeholder="Recipient's email">
+        </div>
+        
+        <div class="form-group mb-4">
+            <label for="file" class="text-dark font-weight-bold">Choose File</label>
+            <input type="file" class="form-control-file animated-input" id="file" name="file" required>
+        </div>
+        
+        <div class="form-group mb-4">
+            <label for="encryption_key" class="text-dark font-weight-bold">Encryption Key</label>
+            <input type="password" class="form-control animated-input" id="encryption_key" name="encryption_key" required placeholder="Encryption key">
+            <small class="form-text text-muted">This key encrypts your file. Share securely with the recipient.</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block mt-4">Share File</button>
+    </form>
+</div>
+
+<style>
+    /* Background animation */
+    body {
+        background: linear-gradient(135deg, #6b6b6b, #4e4e4e);
+        color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        background-image: url('{{ url_for("static", filename="images/image.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Animated moving circles for background effect */
+    body::before, body::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: float 10s infinite alternate;
+    }
+
+    body::before {
+        width: 400px;
+        height: 400px;
+        top: 10%;
+        left: 70%;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    body::after {
+        width: 500px;
+        height: 500px;
+        top: 80%;
+        left: 30%;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes float {
+        from { transform: translateY(0); }
+        to { transform: translateY(-20px) translateX(10px); }
+    }
+
+    /* Container styling */
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Title and subtitle animations */
+    .animate-fade-in {
+        animation: fadeIn 2s ease;
+    }
+
+    .animate-slide-in {
+        animation: slideIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Form animation and input styles */
+    .animate-fade-in-up {
+        animation: fadeInUp 1.5s ease;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animated-input {
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .animated-input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-primary {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        h2, p {
+            font-size: 1.2em;
+        }
+    }
+</style>
+
+<script>
+    // Minimal JavaScript to avoid interference
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.querySelector('.btn-primary');
+        button.addEventListener('click', () => {
+            button.classList.add('animate__animated', 'animate__pulse');
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Education</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-shadow">Best Practices for Account Security</h1>
+        <div class="card shadow-lg p-4 mb-5 bg-white rounded">
+            <ul class="list-group">
+                <li class="list-group-item">Use a unique, complex password for your account.</li>
+                <li class="list-group-item">Enable Multi-Factor Authentication (MFA) for added security.</li>
+                <li class="list-group-item">Do not share your passwords with anyone.</li>
+                <li class="list-group-item">Regularly update your passwords and use a password manager if needed.</li>
+                <li class="list-group-item">Be cautious of phishing attempts and verify the source of emails.</li>
+                <li class="list-group-item">Log out of your account when using public or shared devices.</li>
+            </ul>
+        </div>
+        
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg mt-4 d-block mx-auto">Back to Dashboard</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            background: #f4f7f6;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-group-item {
+            font-size: 1.2rem;
+            padding: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e2e6ea;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>

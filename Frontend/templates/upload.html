@@ -1,0 +1,115 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}
+Upload File - SecureFile
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Upload Your Secure File</h2>
+    <p class="text-center mb-4 text-muted">Ensure your files are safely encrypted before uploading to our secure system.</p>
+    
+    <form id="uploadForm" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data" class="mt-4 shadow-lg p-5 rounded bg-white border-light">
+        
+        <!-- File input section with instructions -->
+        <div class="mb-3">
+            <label for="fileInput" class="form-label">Choose Your File</label>
+            <input type="file" class="form-control" id="fileInput" name="file" required aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">
+                Please upload any important file you wish to encrypt, such as documents, images, or archives.
+                <br>Supported file formats: .zip, .tar, .jpg, .pdf, .docx, and more.
+            </small>
+        </div>
+
+        <!-- Password input section with clear password instructions -->
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Encryption Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password" required minlength="8" placeholder="Minimum 8 characters" aria-label="Enter encryption password">
+            <small id="passwordHelp" class="form-text text-muted">
+                Set a strong password to encrypt your file. Your file will be safely stored and accessible only with this password.
+            </small>
+        </div>
+
+        <!-- Submit button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Upload</button>
+        </div>
+    </form>
+
+    <!-- Back to Dashboard button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary btn-lg btn-block">Go Back to Dashboard</a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+{% block custom_styles %}
+<style>
+    body {
+        background: linear-gradient(135deg, #6b6b6b, #4e4e4e);
+        color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        background-image: url('{{ url_for("static", filename="images/image.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; 
+        transition: background 0.5s ease-in-out;
+    }
+
+    h2 {
+        color: #f8f9fa; /* Light color for the heading */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        animation: fadeIn 1s ease-out;
+    }
+
+    .btn {
+        min-width: 150px; /* Minimum button width */
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px); /* Lift effect on hover */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-control:focus {
+        border-color: #28a745; /* Green border on focus */
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    }
+
+    .bg-light {
+        background-color: rgba(255, 255, 255, 0.9) !important; /* Semi-transparent background for form */
+    }
+
+    .shadow-lg {
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-block {
+        width: 100%; /* Full-width buttons */
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        .btn {
+            min-width: 120px;
+            padding: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+{% endblock %}

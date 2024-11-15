@@ -1,0 +1,16 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Report Logs Login - SecureFile{% endblock %}
+
+{% block content %}
+<div class="container mt-5 p-4 shadow-lg rounded">
+    <h2 class="text-center mb-4">Report Logs Login</h2>
+    <form method="POST" action="{{ url_for('report_logs') }}">
+        <div class="form-group">
+            <label for="password">Enter Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+{% endblock %}

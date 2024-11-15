@@ -1,0 +1,143 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}
+Admin Dashboard - SecureFile
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard container mt-5 p-4 shadow-lg rounded animated fadeInUp" style="background-color: #ffffff;">
+    <h2 class="text-center mb-4 animated fadeInUp" style="color: #333;">Admin Dashboard</h2>
+
+    <!-- User Management Section -->
+    <div class="admin-section mb-5">
+        <h4 class="mb-3 animated fadeInUp" style="color: #007bff;">User Management</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark" style="background-color: #343a40; color: #ffffff;">
+                    <tr>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr class="animated fadeInUp">
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            {% if user.role == 'admin' %}
+                            <form method="POST" action="{{ url_for('demote_user', email=user.email) }}" onsubmit="return confirmAction('Demote')">
+                                <button type="submit" class="btn btn-warning btn-sm action-btn" data-bs-toggle="tooltip" title="Demote to User"><i class="fas fa-user-slash"></i> Demote</button>
+                            </form>
+                            {% else %}
+                            <form method="POST" action="{{ url_for('promote_user', email=user.email) }}" onsubmit="return confirmAction('Promote')">
+                                <button type="submit" class="btn btn-success btn-sm action-btn" data-bs-toggle="tooltip" title="Promote to Admin"><i class="fas fa-user-check"></i> Promote</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Audit Logs Section -->
+    <div class="admin-section mt-5">
+        <h4 class="mb-3 animated fadeInUp" style="color: #007bff;">Audit Logs</h4>
+        <a href="{{ url_for('view_audit_logs') }}" class="btn btn-info action-btn animated fadeInUp"><i class="fas fa-file-alt"></i> View All Audit Logs</a>
+    </div>
+</div>
+
+<script>
+    function confirmAction(action) {
+        return confirm(`Are you sure you want to ${action} this user?`);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize tooltips for buttons
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    });
+
+    // Adding fade-in animation for the admin dashboard
+    setTimeout(function() {
+        document.querySelectorAll('.fadeInUp').forEach(function(el) {
+            el.classList.add('animated', 'fadeInUp');
+        });
+    }, 500);
+</script>
+
+<style>
+    /* Global Style */
+    body {
+        background: linear-gradient(135deg, #6b6b6b, #4e4e4e);
+        color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        background-image: url('{{ url_for("static", filename="images/image.png") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        animation: fadeInBackground 2s ease-out;
+    }
+
+    /* Header and content animations */
+    .admin-dashboard, h2, h4 {
+        opacity: 0;
+        animation: fadeInUp 1s forwards;
+    }
+
+    .admin-dashboard {
+        animation-delay: 0.5s;
+    }
+
+    h2, h4 {
+        animation-delay: 0.7s;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .action-btn {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .action-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef;
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    /* Background animation */
+    @keyframes fadeInBackground {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Fade-in effect for elements */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+{% endblock %}

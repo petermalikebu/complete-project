@@ -1,0 +1,17 @@
+{
+    "cSpell.words": [
+        "AESGCM",
+        "bson",
+        "ciphertext",
+        "encryptor",
+        "OAEP",
+        "pymongo",
+        "pyotp",
+        "qrcode",
+        "totp",
+        "unpad",
+        "urandom",
+        "werkzeug"
+    ],
+    "python.pythonPath": "venv\\Scripts\\python.exe"
+}

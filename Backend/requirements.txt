@@ -1,0 +1,11 @@
+Flask
+Flask-PyMongo
+bcrypt
+qrcode
+cryptography
+PyOTP
+Flask-Mail
+schedule
+PyMongo
+os
+.\venv\Scripts\activate

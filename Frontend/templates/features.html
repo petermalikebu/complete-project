@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-Fortress Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            color: #fff;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #232323;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffd700;
+        }
+
+        .feature {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .feature h3 {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .back-home {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #232323;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .back-home:hover {
+            background-color: #ffcc00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #232323;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .feature h3 {
+                font-size: 20px;
+            }
+
+            .feature p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Data-Fortress Features</h1>
+</header>
+
+<div class="container">
+    <h2>Key Features</h2>
+
+    <div class="feature">
+        <h3>Enhanced Access Controls</h3>
+        <p>Implementation of granular access control policies to regulate user permissions and restrict unauthorized access to sensitive data stored in the cloud.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Multi-Factor Authentication</h3>
+        <p>Integration of multi-factor authentication protocols to bolster authentication processes and strengthen user verification.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Immutable Audit Trails</h3>
+        <p>Establishment of immutable audit trails to record and track all user activities, system events, and data access attempts within the cloud environment.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Continuous Monitoring and Threat Detection</h3>
+        <p>Deployment of intrusion detection systems and anomaly detection algorithms to continuously monitor network traffic and detect suspicious activities.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Data Encryption and Key Management</h3>
+        <p>Implementation of robust encryption techniques to encrypt data at rest and in transit, ensuring that sensitive information remains protected from unauthorized access.</p>
+    </div>
+
+    <!-- Back Home Button -->
+    <a href="{{ url_for('index') }}" class="back-home">Back to Home</a>
+</div>
+
+<footer>
+    <p>&copy; 2024 Data-Fortress Project. All rights reserved.</p>
+</footer>
+
+<script>
+    // Example JavaScript functionality (can be expanded)
+    document.querySelectorAll('.feature').forEach(feature => {
+        feature.addEventListener('click', () => {
+            alert(feature.querySelector('h3').innerText + " clicked!");
+        });
+    });
+</script>
+
+</body>
+</html>
