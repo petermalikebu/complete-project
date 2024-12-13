@@ -507,6 +507,7 @@ def my_files():
                                 output_path,
                                 as_attachment=True,
                                 download_name=filename
+                                mimetype='application/octet-stream',
                             )
                         else:
                             flash("Failed to decrypt the file. Please check the password.")
