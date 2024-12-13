@@ -897,4 +897,5 @@ if __name__ == '__main__':
     threading.Thread(target=schedule.run_pending, daemon=True).start()
     
     # Run the Flask app on a custom port (e.g., 5001)
-    app.run(debug=True, host='0.0.0.0', port=65000)
+    app.run(debug=True, host='0.0.0.0', port=3000)  # Change to 3000 or another available port
+
