@@ -894,4 +894,6 @@ def logout():
 if __name__ == '__main__':
     # Start key rotation thread
     threading.Thread(target=schedule.run_pending, daemon=True).start()
-    app.run(debug=True)
+    
+    # Run the Flask app on a custom port (e.g., 5001)
+    app.run(debug=True, host='0.0.0.0', port=65000)
